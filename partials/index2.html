@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="store">
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+	<script type="text/javascript" src="JS/angular.min.js"></script>
+	<script type="text/javascript" src="JS/appA.js"></script>
+</head>
+<body>
+	<div ng-controller="storeController as store">
+		<div id="map" style="width:700px;height:480px;"></div>
+		<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkoHOMb0Rp60-mfLZsv_ncrDI3MSNwnBE&callback=initMap">
+		</script>
+		<button id="drop" onClick="dropMeteorite(0)">Drop meteorites!</button>
+	</div>
+</body>
+</html>
