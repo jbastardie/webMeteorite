@@ -10,7 +10,7 @@ meteoriteApp.config(['$routeProvider',
     $routeProvider.
       when('/map', {
         templateUrl: 'partials/page_map.html',
-        controller: 'mapController'
+        controller: 'mapController as mapC'
       }).
       when('/stat', {
         templateUrl: 'partials/page_stat.html',

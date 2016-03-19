@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" >
 
 	<div class="row" id="content">
 		<div id="map_options" class="col-xs-4">
@@ -8,7 +8,15 @@
 			<div class="row options"></div>
 		</div>
 		<div id="map"style="width:700px;height:480px;"></div> <!-- style="width:700px;height:480px;" -->
-		<button id="drop" onClick="dropMeteorite(0)">Drop meteorites!</button>
+		<button id="drop" onClick="dropMeteorite(0)">Drop meteorites!</button><br/>
+		<form name="searchbar" id="searchBar" novalidate>
+			<input type="search" ng-model="searchString" required>
+			<div ng-controller="searchBar" ng-repeat="meteorites in mapC.meteorites | filter: searchString | limitTo:5" ng-show="searchbar.$valid">
+				<div id="suggestion" ng-click="zoomOnMeteorite(meteorites.geolocation.coordinates[1], meteorites.geolocation.coordinates[0])">
+					{{meteorites.name}}
+				</div>
+			</div>
+		</form>
 	</div>
 </div>
 

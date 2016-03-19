@@ -20,6 +20,7 @@ meteoriteControllers.controller('mapController',['$http','$log',
 		.success(function(data){
 			console.log("success import json");
 			globalScope.meteorites=data;
+			initMap();
 			placeMarkers();
 			
 		})
@@ -33,6 +34,19 @@ meteoriteControllers.controller('mapController',['$http','$log',
 meteoriteControllers.controller('statController',function($scope){
 	
 });
+
+meteoriteControllers.controller('searchBar', ['$scope', function($scope) {
+	$scope.zoomOnMeteorite = function(lat, lng) {
+		if (typeof(lat) && typeof(lng) != "undefined"){
+		  var pt = new google.maps.LatLng(lat, lng);
+		  map.setCenter(pt);
+		  map.setZoom(8);
+		 }
+		 else{
+			alert("Les coordonnées pour cette météorite ne sont pas renseignées")
+		 }
+	};
+}]);
 
 function initMap() {
 	var center = new google.maps.LatLng(0,0);
@@ -57,8 +71,8 @@ function placeMarkers(){
 			icon: createMarker()
 			});
 				
-			var content = "je suis une météorite!"  
-			var infowindow = new google.maps.InfoWindow()
+			var content = "masse: "+ meteorite.mass+" g & nom: " + meteorite.name;
+			var infowindow = new google.maps.InfoWindow();
 			google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
 					return function() {
 					   infowindow.setContent(content);
