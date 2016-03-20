@@ -16,8 +16,12 @@ meteoriteApp.config(['$routeProvider',
         templateUrl: 'partials/page_stat.html',
         controller: 'statController'
       }).
+	  when('/', {
+        templateUrl: 'partials/loader.html',
+        controller: ''
+      }).
       otherwise({
-        redirectTo: '/map'
+        redirectTo: '/'
       });
   }]);
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" ng-app="meteoriteApp">
+<html lang="fr" ng-app="meteoriteApp" >
     <head>
 		<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,16 +7,22 @@
 		<script type="text/javascript"  src="js/vendor/angular.min.js"></script>
 		<script type="text/javascript"  src="js/vendor/angular-route.min.js"></script>
 		<script type="text/javascript"  src="js/app.js"></script>
-		<script type="text/javascript"  src="js/controller.js"></script>
-		<script type="text/javascript"  src="js/src/markerclusterer.js"></script>
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkoHOMb0Rp60-mfLZsv_ncrDI3MSNwnBE"></script>
+		
+		<!-- Chargement des Controllers -->
+		<script type="text/javascript"  src="js/mainController.js"></script>
+		<script type="text/javascript"  src="js/statController.js"></script>
+		<script type="text/javascript"  src="js/mapController.js"></script>
+		<script type="text/javascript"  src="js/searchBarController.js"></script>
+		<!-- Fin Chargement des Controllers -->
+		<script type="text/javascript"  src="js/src/markerclusterer.js"></script>		
 		<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 		<script type="text/javascript"  src="js/vendor/angular-chart/angular-chart.js"></script>
+		<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkoHOMb0Rp60-mfLZsv_ncrDI3MSNwnBE&callback=getJson"></script> -->
 
 		<link rel="stylesheet" href="css/global.css" />	   		
 	</head>
 	
-	<body>
+	<body ng-controller="mainController">
 		
 	<header class="row">
 		 <nav class="navbar navbar-inverse">
@@ -29,6 +35,8 @@
 				</div>
             </nav>
 	</header>
+	
+	
 		<div class="view-container">
 			<div ng-view class="view-frame"></div>
 		</div>
