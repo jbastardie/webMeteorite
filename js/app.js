@@ -3,7 +3,7 @@
 //Fichier app.js
 
 
-var meteoriteApp= angular.module('meteoriteApp',['meteoriteControllers','ngRoute']);
+var meteoriteApp= angular.module('meteoriteApp',['meteoriteControllers','ngRoute','chart.js']);
 
 meteoriteApp.config(['$routeProvider',
   function($routeProvider) {
