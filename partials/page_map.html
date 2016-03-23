@@ -8,15 +8,28 @@
 			<div class="row options"></div>
 		</div>
 		<div id="map"style="width:700px;height:480px;"></div> <!-- style="width:700px;height:480px;" -->
+		<!-- drop meteorites button -->
 		<button id="drop" ng-click="dropMeteorite(0)">Drop meteorites!</button><br/>
+		<!-- search bar -->
 		<form name="searchbar" id="searchBar" novalidate>
 			<input type="search" ng-model="searchString" required>
-			<div ng-controller="searchBarController" ng-repeat="meteorites in mapC.meteorites | filter: searchString | limitTo:5" ng-show="searchbar.$valid">
-				<div id="suggestion" ng-click="zoomOnMeteorite(meteorites.geolocation.coordinates[1], meteorites.geolocation.coordinates[0])">
+			<div ng-repeat="meteorites in mapC.meteorites | filter: searchString | limitTo:5" ng-show="searchbar.$valid">
+				<div id="suggestion" ng-click="zoomOnCoordinate(meteorites.geolocation.coordinates[1], meteorites.geolocation.coordinates[0], 8)">
 					{{meteorites.name}}
 				</div>
 			</div>
 		</form>
+		<!-- slider bar -->
+		<div class="nstSlider" ng-controller="seekBarController"
+            data-range_min="0" data-range_max="{{maxMassSeekBar() | max}}"
+            data-cur_min="10"  data-cur_max="90">
+			<div class="bar"></div>
+			<div class="leftGrip"></div>
+			<div class="rightGrip"></div>
+			{{initSeekBar()}}
+		</div>
+		<div class="leftLabel"></div>
+		<div class="rightLabel"></div>
 	</div>
 </div>
 

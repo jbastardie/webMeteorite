@@ -25,5 +25,22 @@ meteoriteApp.config(['$routeProvider',
       });
   }]);
 
+  
+//custom filter which return the max value of an array
+meteoriteApp.filter('max', function() {
+    return function(input) {
+      var out = 0;
+      if (input){
+        for (var i = 0; i < input.length; i++) {
+          if (Number(input[i]) > out) {
+            out = Number(input[i]);
+          }
+        }
+      }
+      return out;
+    };
+  }
+);
+
 
 

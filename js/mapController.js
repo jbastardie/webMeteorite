@@ -35,7 +35,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 		};
 		
 		var placeMarkers = function(){
-			console.log('lauch place amrkers');
+			console.log('lauch place markers');
 			var markers = []
 			for (var i = 0; i < globalScope.meteorites.length; i++) {
 			  var meteorite = globalScope.meteorites[i];
@@ -95,6 +95,17 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 					}
 				}
 			},200);
+		};
+		
+		$scope.zoomOnCoordinate = function(lat, lng, zoom) {
+			if (typeof(lat) && typeof(lng) != "undefined"){
+			  var pt = new google.maps.LatLng(lat, lng);
+			  map.setCenter(pt);
+			  map.setZoom(zoom);
+			 }
+			 else{
+				alert("Les coordonnées pour cette météorite ne sont pas renseignées");
+			 }
 		};
 		
 		
