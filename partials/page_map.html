@@ -19,17 +19,28 @@
 				</div>
 			</div>
 		</form>
-		<!-- slider bar -->
-		<div class="nstSlider" ng-controller="seekBarController"
-            data-range_min="0" data-range_max="{{maxMassSeekBar() | max}}"
-            data-cur_min="10"  data-cur_max="90">
+		<!-- slider bar mass-->
+		<div class="nstSlider" id="mass" ng-controller="seekBarController"
+            data-range_min="{{arrayMassSeekBar() | min}}" data-range_max="{{arrayMassSeekBar() | max}}"
+            data-cur_min="{{arrayMassSeekBar() | min}}"  data-cur_max="{{arrayMassSeekBar() | max}}">
 			<div class="bar"></div>
 			<div class="leftGrip"></div>
 			<div class="rightGrip"></div>
-			{{initSeekBar()}}
+			{{initSeekBarMass()}}
 		</div>
-		<div class="leftLabel"></div>
-		<div class="rightLabel"></div>
+		<div class="leftLabelMass"></div>
+		<div class="rightLabelMass"></div>
+		<!-- slider bar year-->
+		<div class="nstSlider" id="year" ng-controller="seekBarController"
+            data-range_min="{{arrayYearSeekBar() | min}}" data-range_max="{{arrayYearSeekBar() | max}}"
+            data-cur_min="{{arrayYearSeekBar() | min}}"  data-cur_max="{{arrayYearSeekBar() | max}}">
+			<div class="bar"></div>
+			<div class="leftGrip"></div>
+			<div class="rightGrip"></div>
+			{{initSeekBarYear()}}
+		</div>
+		<div class="leftLabelYear"></div>
+		<div class="rightLabelYear"></div>
 	</div>
 </div>
 

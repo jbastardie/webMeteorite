@@ -42,5 +42,20 @@ meteoriteApp.filter('max', function() {
   }
 );
 
+meteoriteApp.filter('min', function() {
+    return function(input) {
+      var out;
+      if (input){
+        for (var i = 0; i < input.length; i++) {
+          if (Number(input[i]) < out || typeof(out) == "undefined") {
+            out = Number(input[i]);
+          }
+        }
+      }
+      return out;
+    };
+  }
+);
+
 
 
