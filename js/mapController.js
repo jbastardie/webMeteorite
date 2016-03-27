@@ -7,7 +7,6 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 		globalScope.meteorites=[];
 		//object map
 		var map;
-		//un module angulaire
 		var markerClusterer;
 
 		
@@ -41,8 +40,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			  //condition vérifiant si la métorite possède bien une géolocalisation, et si elle est conforme aux filtres d'affichages défini par l'utilisateur.
 			  if((typeof(meteorite.geolocation) != "undefined") && massMeteorite >= massMin && massMeteorite <= massMax && 
 			  yearMeteorite >= yearMin && yearMeteorite <= yearMax || ((typeof(meteorite.geolocation) != "undefined") && typeof(massMin)=="undefined")){
-				 var latLng = new google.maps.LatLng(meteorite.geolocation.coordinates[1],
-					 meteorite.geolocation.coordinates[0]);
+				 var latLng = new google.maps.LatLng(meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]);
 					var marker = new google.maps.Marker({
 						position: latLng,
 						icon: createMarker()
@@ -76,7 +74,6 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 		//fonction permettant de recharger les markers ansi que le markerclusterer en fonction des données des sliders
 		$scope.reloadMarkers = function(){
 			markerClusterer.clearMarkers();
-			console.log("min value: " + $('#massSlider').nstSlider('get_current_min_value'));
 			placeMarkers($('#massSlider').nstSlider('get_current_min_value'),$('#massSlider').nstSlider('get_current_max_value'),
 			$('#yearSlider').nstSlider('get_current_min_value'),$('#yearSlider').nstSlider('get_current_max_value'));
 		}
@@ -106,6 +103,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			},200);
 		};
 		
+		//zoom sur les coordonnées transmise en argumant pour un zoom donné.
 		$scope.zoomOnCoordinate = function(lat, lng, zoom) {
 			if (typeof(lat) && typeof(lng) != "undefined"){
 			  var pt = new google.maps.LatLng(lat, lng);
@@ -116,7 +114,6 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 				alert("Les coordonnées pour cette météorite ne sont pas renseignées");
 			 }
 		};
-		
 		
 		// Logique du MapController
 		// Chargement de l'API GoogleMap si elle n'as pas encore été chargée
