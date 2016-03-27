@@ -20,27 +20,28 @@
 			</div>
 		</form>
 		<!-- slider bar mass-->
-		<div class="nstSlider" id="mass" ng-controller="seekBarController"
+		<div class="nstSlider" id="massSlider" ng-controller="seekBarController"
             data-range_min="{{arrayMassSeekBar() | min}}" data-range_max="{{arrayMassSeekBar() | max}}"
             data-cur_min="{{arrayMassSeekBar() | min}}"  data-cur_max="{{arrayMassSeekBar() | max}}">
 			<div class="bar"></div>
-			<div class="leftGrip"></div>
-			<div class="rightGrip"></div>
+			<div class="leftGrip" id ="leftGripMass"></div>
+			<div class="rightGrip" id="rightGripMass"></div>
 			{{initSeekBarMass()}}
 		</div>
 		<div class="leftLabelMass"></div>
 		<div class="rightLabelMass"></div>
 		<!-- slider bar year-->
-		<div class="nstSlider" id="year" ng-controller="seekBarController"
+		<div class="nstSlider" id="yearSlider" ng-controller="seekBarController"
             data-range_min="{{arrayYearSeekBar() | min}}" data-range_max="{{arrayYearSeekBar() | max}}"
             data-cur_min="{{arrayYearSeekBar() | min}}"  data-cur_max="{{arrayYearSeekBar() | max}}">
 			<div class="bar"></div>
-			<div class="leftGrip"></div>
-			<div class="rightGrip"></div>
+			<div class="leftGrip" id="leftGripYear"></div>
+			<div class="rightGrip" id="rightGripYear"></div>
 			{{initSeekBarYear()}}
 		</div>
 		<div class="leftLabelYear"></div>
 		<div class="rightLabelYear"></div>
+		<button id="reloadMarkers" ng-click="reloadMarkers()">Apply filter</button>
 	</div>
 </div>
 

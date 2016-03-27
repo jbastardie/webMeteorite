@@ -8,17 +8,12 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 		//object map
 		var map;
 		//un module angulaire
-		var zoomSizeMarkers = [[]];
 		var markerClusterer;
-		var infoMarkers;
-		
-		
-		
-		
 
 		
 		// Declaration des Fonctions
 		
+		//initialisationde la carte
 		var initMap=function() {
 			console.log('launch init map');
 			var center = new google.maps.LatLng(0,0);
@@ -31,22 +26,28 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 				styles:[{"stylers":[{"hue":"#ff1a00"},{"invert_lightness":true},{"saturation":-100},{"lightness":33},{"gamma":0.5}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2D333C"}]}]
 			});
 			placeMarkers();
-
 		};
 		
-		var placeMarkers = function(){
+		var placeMarkers = function(massMin,massMax,yearMin,yearMax){
 			console.log('lauch place markers');
+			//creation de notre tableau de marker
 			var markers = []
+			//parcours des données extraites du json
 			for (var i = 0; i < globalScope.meteorites.length; i++) {
 			  var meteorite = globalScope.meteorites[i];
-			  if (typeof(meteorite.geolocation) != "undefined"){
+			  //extraction de la masse et de l'année de la météorite pour comparaison avec les filtres 
+			  var massMeteorite = meteorite.mass;
+			  var yearMeteorite = new Date(meteorite.year).getFullYear();
+			  //condition vérifiant si la métorite possède bien une géolocalisation, et si elle est conforme aux filtres d'affichages défini par l'utilisateur.
+			  if((typeof(meteorite.geolocation) != "undefined") && massMeteorite >= massMin && massMeteorite <= massMax && 
+			  yearMeteorite >= yearMin && yearMeteorite <= yearMax || ((typeof(meteorite.geolocation) != "undefined") && typeof(massMin)=="undefined")){
 				 var latLng = new google.maps.LatLng(meteorite.geolocation.coordinates[1],
 					 meteorite.geolocation.coordinates[0]);
 					var marker = new google.maps.Marker({
-					position: latLng,
-					icon: createMarker()
+						position: latLng,
+						icon: createMarker()
 					});
-						
+					//définition du contenu de l'infowindow qui sera affiché lorsque l'on clique sur la météorite
 					var content = "masse: "+ meteorite.mass+" g & nom: " + meteorite.name;
 					var infowindow = new google.maps.InfoWindow();
 					google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
@@ -71,6 +72,14 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			);
 			return markerImage;
 		};
+		
+		//fonction permettant de recharger les markers ansi que le markerclusterer en fonction des données des sliders
+		$scope.reloadMarkers = function(){
+			markerClusterer.clearMarkers();
+			console.log("min value: " + $('#massSlider').nstSlider('get_current_min_value'));
+			placeMarkers($('#massSlider').nstSlider('get_current_min_value'),$('#massSlider').nstSlider('get_current_max_value'),
+			$('#yearSlider').nstSlider('get_current_min_value'),$('#yearSlider').nstSlider('get_current_max_value'));
+		}
 		
 		
 		$scope.dropMeteorite= function(i){
