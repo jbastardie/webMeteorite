@@ -3,12 +3,17 @@
 	<div class="row" id="content">
 
 		<div class="col-md-6 col-xs-12 chart">
-			<canvas id="line" class="chart chart-line" chart-data="data"
-			  chart-labels="labels" chart-legend="true" chart-series="series"
-			  chart-click="onClick" >
-			</canvas> 
+			<canvas id="line" class="chart chart-line" chart-data="dataMass"
+			  chart-labels="labelsMass" chart-legend="true" chart-series="seriesMass"
+			  chart-click="onClick" chart-options="{pointDot:false, scaleBeginAtZero: true}" >
+			</canvas>
 		</div>
-		<div class="col-md-6 col-xs-12 chart"></div>
+		<div class="col-md-6 col-xs-12 chart">
+			<canvas id="years" class="chart chart-line" chart-data="dataYear"
+			  chart-labels="labelsYear" chart-legend="true" chart-series="seriesYear"
+			  chart-click="onClick" chart-options="{pointDot:false, scaleBeginAtZero: true}" >
+			</canvas>
+		</div>
 		<div class="col-md-6 col-xs-12 chart"></div>
 		<div class="col-md-6 col-xs-12 chart"></div>
 		<div class="col-md-6 col-xs-12 chart"></div>
@@ -16,4 +21,3 @@
 
 	</div>
 </div>
-
