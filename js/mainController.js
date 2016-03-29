@@ -22,9 +22,7 @@ meteoriteControllers.controller('mainController',['$http','$scope','$location',f
 		.error(function(errormsg){
 			alert("error chargement json");
 		})
-		
-		
-		
+	
 }]);
 
 

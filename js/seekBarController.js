@@ -63,4 +63,10 @@ angular.module('meteoriteControllers').controller('seekBarController', ['$scope'
 		return yearArray
 	}
 	
+	$(window).resize(function () { 
+		$('#massSlider').nstSlider('refresh');
+		$('#yearSlider').nstSlider('refresh');
+	});
+	
 }]);
+
