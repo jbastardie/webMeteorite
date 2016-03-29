@@ -31,7 +31,8 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 				zoom: 1,
 				center: center,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				styles:[{"stylers":[{"hue":"#ff1a00"},{"invert_lightness":true},{"saturation":-100},{"lightness":33},{"gamma":0.5}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2D333C"}]}]
+				styles:[{"stylers":[{"hue":"#ff1a00"},{"invert_lightness":true},{"saturation":-100},{"lightness":33},{"gamma":0.5}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2D333C"}]}],
+				backgroundColor: 'none'
 			});
 			placeMarkers();
 		};
