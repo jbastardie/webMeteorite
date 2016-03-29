@@ -1,5 +1,6 @@
 li{float:left;}
-
+html{background-color: black;overflow-x: hidden;}
+body{background-color: black;}
 #containerResults{
     display: none;
     -webkit-transition:all 0.3s ease-in-out;
@@ -21,6 +22,106 @@ input[type="search"]:focus + #containerResults{
 	z-index: 1;
 }
 
+header,.view-frame{position: relative;z-index: 1;}
+
+
+
+
+
+
+
+
+
+
+
+
+.stars-wrapper .stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+.stars-animation {
+    -moz-animation: stairs 9s linear infinite;
+    -webkit-animation: stairs 9s linear infinite;
+    animation: stairs 9s linear infinite;
+}
+.stars-animation-two {
+    -moz-animation: stairs 9s linear infinite;
+    -webkit-animation: stairs 9s linear infinite;
+    animation: stairs 9s linear infinite;
+    animation-delay: 3s;
+}
+.stars-animation-three {
+    -moz-animation: stairs 9s linear infinite;
+    -webkit-animation: stairs 9s linear infinite;
+    animation: stairs 9s linear infinite;
+    animation-delay: 6s;
+}
+
+@-moz-keyframes stairs {
+  0% {
+    opacity: 0;
+    -moz-transform: scale(0);
+    transform: scale(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -moz-transform: scale(3);
+    transform: scale(3);
+  }
+}
+@-webkit-keyframes stairs {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+    transform: scale(3);
+  }
+}
+@keyframes stairs {
+  0% {
+    opacity: 0;
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -moz-transform: scale(3);
+    -ms-transform: scale(3);
+    -webkit-transform: scale(3);
+    transform: scale(3);
+  }
+}
+
+
 #row_option{
 	margin:10px;
 }
@@ -29,6 +130,5 @@ input[type="search"]:focus + #containerResults{
 	display: inline-block;
 }
 .leftLabelMass{
-	display: inline-block; 
+	display: inline-block;
 }
-
