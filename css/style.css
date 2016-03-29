@@ -21,6 +21,7 @@ input[type="search"]:focus + #containerResults{
 	position: absolute;
 	z-index: 1;
 }
+
 header,.view-frame{position: relative;z-index: 1;}
 
 
@@ -118,4 +119,16 @@ header,.view-frame{position: relative;z-index: 1;}
     -webkit-transform: scale(3);
     transform: scale(3);
   }
+}
+
+
+#row_option{
+	margin:10px;
+}
+
+.rightLabelMass{
+	display: inline-block;
+}
+.leftLabelMass{
+	display: inline-block;
 }

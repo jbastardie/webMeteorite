@@ -1,8 +1,8 @@
 <div class="container" >
 
 	<div class="row" id="content">
-		<div id="map_options" class="col-xs-4">
-			<div class="row options">
+		<div id="map_options" class="col-xs-12 col-lg-4">
+			<div class="row options" id="row_option">
 			<!-- search bar -->
 			<form name="searchbar" id="searchBar" novalidate>
 				<input type="search" id="searchInput" ng-model="searchString" required>
@@ -15,37 +15,43 @@
 				</div>
 			</form>
 			</div>
-			<div class="row options"></div>
-			<div class="row options"></div>
-			<div class="row options"></div>
+			<div class="row options" id="row_option">
+				<!-- slider bar mass-->
+				<div class="nstSlider" id="massSlider" ng-controller="seekBarController"
+					data-range_min="{{arrayMassSeekBar() | min}}" data-range_max="{{arrayMassSeekBar() | max}}"
+					data-cur_min="{{arrayMassSeekBar() | min}}"  data-cur_max="{{arrayMassSeekBar() | max}}">
+					<div class="bar"></div>
+					<div class="leftGrip" id ="leftGripMass"></div>
+					<div class="rightGrip" id="rightGripMass"></div>
+					{{initSeekBarMass()}}
+				</div>
+				<div class="leftLabelMass"></div>
+				<div class="rightLabelMass"></div>
+			</div>
+			<div class="row options" id="row_option">
+				<!-- slider bar year-->
+				<div class="nstSlider" id="yearSlider" ng-controller="seekBarController"
+					data-range_min="{{arrayYearSeekBar() | min}}" data-range_max="{{arrayYearSeekBar() | max}}"
+					data-cur_min="{{arrayYearSeekBar() | min}}"  data-cur_max="{{arrayYearSeekBar() | max}}">
+					<div class="bar"></div>
+					<div class="leftGrip" id="leftGripYear"></div>
+					<div class="rightGrip" id="rightGripYear"></div>
+					{{initSeekBarYear()}}
+				</div>
+				<div class="leftLabelYear"></div>
+				<div class="rightLabelYear"></div>
+			</div>
+			<div class="row options" id="row_option">
+				<input type="button" id="dropMeteorite" ng-click="startStopDropMeteorite()" value = "Drop meteorites"></input><br/>
+			</div>
+			<div class="row options" id="row_option">
+				<!-- drop meteorites button -->
+				<button id="reloadMarkers" ng-click="reloadMarkers()">Apply filter</button>
+			</div>
 		</div>
-		<div id="map"style="width:700px;height:480px;"></div> <!-- style="width:700px;height:480px;" -->
-		<!-- drop meteorites button -->
-		<button id="drop" ng-click="dropMeteorite(0)">Drop meteorites!</button><br/>
-
-		<!-- slider bar mass-->
-		<div class="nstSlider" id="massSlider" ng-controller="seekBarController"
-            data-range_min="{{arrayMassSeekBar() | min}}" data-range_max="{{arrayMassSeekBar() | max}}"
-            data-cur_min="{{arrayMassSeekBar() | min}}"  data-cur_max="{{arrayMassSeekBar() | max}}">
-			<div class="bar"></div>
-			<div class="leftGrip" id ="leftGripMass"></div>
-			<div class="rightGrip" id="rightGripMass"></div>
-			{{initSeekBarMass()}}
+		<div class ="col-xs-12 col-lg-7">
+			<div id="map"></div>
 		</div>
-		<div class="leftLabelMass"></div>
-		<div class="rightLabelMass"></div>
-		<!-- slider bar year-->
-		<div class="nstSlider" id="yearSlider" ng-controller="seekBarController"
-            data-range_min="{{arrayYearSeekBar() | min}}" data-range_max="{{arrayYearSeekBar() | max}}"
-            data-cur_min="{{arrayYearSeekBar() | min}}"  data-cur_max="{{arrayYearSeekBar() | max}}">
-			<div class="bar"></div>
-			<div class="leftGrip" id="leftGripYear"></div>
-			<div class="rightGrip" id="rightGripYear"></div>
-			{{initSeekBarYear()}}
-		</div>
-		<div class="leftLabelYear"></div>
-		<div class="rightLabelYear"></div>
-		<button id="reloadMarkers" ng-click="reloadMarkers()">Apply filter</button>
 	</div>
 </div>
 
