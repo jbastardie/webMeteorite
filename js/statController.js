@@ -3,14 +3,22 @@ angular.module('meteoriteControllers').controller('statController',function ($sc
 
   var globalScope=this;
   globalScope.meteorites=dataJson;
+  $scope.meteorites=dataJson;
   var counts = {};
   var countsYear= {};
   var tabMass=[];
   var tabYear=[];
   var tabData={dixG:0,centG:0,milleG:0,dixKG:0,centKG:0,mG:0,dixMG:0,centMG:0};
   var tabDataYear={a:0,b:0,c:0,d:0,e:0,f:0,g:0,h:0,i:0,j:0,k:0,l:0,m:0,n:0};
-  console.log(tabDataYear);
 
+for (var variable in $scope.meteorites) {
+  if ($scope.meteorites.hasOwnProperty(variable)) {;
+    $scope.meteorites[variable].year=parseFloat($scope.meteorites[variable].year);
+    if(typeof $scope.meteorites[variable].mass!= "undefined"){
+      $scope.meteorites[variable].mass=parseInt($scope.meteorites[variable].mass).toFixed(2);
+    }
+  }
+}
 
   for(var i = 0; i< globalScope.meteorites.length; i++) {
       var num = globalScope.meteorites[i].mass;
@@ -72,7 +80,6 @@ angular.module('meteoriteControllers').controller('statController',function ($sc
       }
     }
   }
-
   tabMass.push(0);
   for (var key in tabData) {
     if (tabData.hasOwnProperty(key)) {
@@ -86,8 +93,6 @@ angular.module('meteoriteControllers').controller('statController',function ($sc
     }
   }
 
-  console.log(tabDataYear);
-  console.log(tabYear);
   $scope.labelsMass = ["0","10","100","1000","10K","100k","1M","10M","100M"];
   $scope.labelsYear = ["800","1800","1850","1900","1910","1920","1930","1940","1950","1960","1970","1980","1990","2000","2013"];
   $scope.seriesMass = ['Repartition selon la masse'];

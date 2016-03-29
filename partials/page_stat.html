@@ -14,10 +14,21 @@
 			  chart-click="onClick" chart-options="{pointDot:false, scaleBeginAtZero: true}" >
 			</canvas>
 		</div>
-		<div class="col-md-6 col-xs-12 chart"></div>
-		<div class="col-md-6 col-xs-12 chart"></div>
-		<div class="col-md-6 col-xs-12 chart"></div>
-		<div class="col-md-6 col-xs-12 chart"></div>
+		<div class="col-xs-12 chart">
+			<table class="table">
+					<tr ng-repeat="met in meteorites">
+						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.name }}</td>
+						<td ng-if="$even">{{ met.name }}</td>
+						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.mass }}</td>
+						<td ng-if="$even">{{ met.mass }}</td>
+						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.year }}</td>
+						<td ng-if="$even">{{ met.year }}</td>
+						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.recclass }}</td>
+						<td ng-if="$even">{{ met.recclass }}</td>
+					</tr>
+		</table>
+		</div>
+
 
 	</div>
 </div>
