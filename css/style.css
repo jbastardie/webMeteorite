@@ -1,6 +1,8 @@
 li{float:left;}
 html{background-color: black;overflow-x: hidden;}
 body{background-color: black;}
+
+/* le container des résultats de la recherche n'est aps affiché par defaut */
 #containerResults{
     display: none;
     -webkit-transition:all 0.3s ease-in-out;
@@ -10,12 +12,14 @@ body{background-color: black;}
 	background-color:white;
 }
 
+/* le container des résultats est affiché si l'utilisateur selectionne l'input */
 input[type="search"]:focus + #containerResults{
     display: block;
 	position: absolute;
 	z-index: 1;
 }
 
+/* le container des résultats est affiché tant que l'utilisateur parcourt les résultats */
 #containerResults:hover {
 	display: block;
 	position: absolute;
@@ -164,6 +168,13 @@ header,.view-frame{position: relative;z-index: 1;}
 	padding:5px;
 	padding-left:10px;
 	padding-right:10px;
+}
+
+#map_options{
+	border-radius:2px;
+	background-color:grey;
+	opacity:60%;
+	padding:10px;
 }
 
 #dropMeteorite,#reloadMarkers {

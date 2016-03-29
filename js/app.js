@@ -26,7 +26,7 @@ meteoriteApp.config(['$routeProvider',
   }]);
 
   
-//custom filter which return the max value of an array
+//filtre custom qui retourne la valeur max d'un tableau
 meteoriteApp.filter('max', function() {
     return function(input) {
       var out = 0;
@@ -42,6 +42,7 @@ meteoriteApp.filter('max', function() {
   }
 );
 
+//filtre custom qui retourne la valeur min d'un tableau
 meteoriteApp.filter('min', function() {
     return function(input) {
       var out;
