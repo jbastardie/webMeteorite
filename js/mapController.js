@@ -92,6 +92,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			$('#yearSlider').nstSlider('get_current_min_value'),$('#yearSlider').nstSlider('get_current_max_value'));
 		}
 		
+		//fonction gerant la chute des météorites
 		$scope.startStopDropMeteorite = function(){
 			if(isDropping){
 				clearInterval(intervalForDropMeteorite);
@@ -106,7 +107,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 				markerClusterer.clearMarkers();
 				intervalForDropMeteorite = setInterval(function(){ dropMeteorite() }, 200);
 				isDropping = true;
-				document.getElementById("dropMeteorite").value = "stop le drop";
+				document.getElementById("dropMeteorite").value = "stop drop meteorites";
 			}
 		}
 		

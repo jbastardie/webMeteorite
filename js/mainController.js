@@ -5,7 +5,7 @@ var dataJson;
 var dataJsonBis;
 var uninitializedChart=true;
 var chartData={};
-var meteoriteControllers=angular.module('meteoriteControllers', []);
+var meteoriteControllers=angular.module('meteoriteControllers', ['ui.bootstrap']);
 
 meteoriteControllers.controller('mainController',['$http','$scope','$location',function($http,$scope,$location){
 
@@ -27,7 +27,5 @@ meteoriteControllers.controller('mainController',['$http','$scope','$location',f
 		.error(function(errormsg){
 			alert("error chargement json");
 		})
-
-
 
 }]);

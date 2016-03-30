@@ -16,7 +16,15 @@
 		</div>
 		<div class="col-xs-12 chart">
 			<table class="table">
-					<tr ng-repeat="met in meteorites">
+					<tr>
+						<td ng-click="sortType = 'name'; sortReverse = !sortReverse">Nom</td>
+						<td ng-click="sortType = 'mass'; sortReverse = !sortReverse">Masse (g)</td>
+						<td ng-click="sortType = 'year'; sortReverse = !sortReverse">Année</td>
+						<td ng-click="sortType = 'recclass'; sortReverse = !sortReverse">Classe</td>
+
+						</td>
+					</tr>
+					<tr ng-repeat="met in meteorites | orderBy:sortType:sortReverse | limitTo:viewby:(currentPage-1)*viewby">
 						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.name }}</td>
 						<td ng-if="$even"style="background-color:blue">{{ met.name }}</td>
 						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.mass }}</td>
@@ -27,6 +35,10 @@
 						<td ng-if="$even"style="background-color:blue">{{ met.recclass }}</td>
 					</tr>
 		</table>
+		<div class="row">
+		<pagination ng-model="currentPage" total-items="meteorites.length" max-size="maxSize" boundary-links="true"></pagination>
+		<select class="form-control" ng-model="viewby" ng-change="setItemsPerPage(viewby)"></option><option ng-selected="true">10</option><option>20</option><option>30</option><option>40</option><option>50</option></select>
+	</div>
 		</div>
 
 

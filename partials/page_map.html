@@ -5,7 +5,7 @@
 			<div class="row options" id="row_option">
 			<!-- search bar -->
 			<form name="searchbar" id="searchBar" novalidate>
-				<input type="search" id="searchInput" ng-model="searchString" required>
+				<input type="search" id="searchInput" placeholder="Search" ng-model="searchString" autocomplete="off" required>
 				<div id="containerResults">
 					<div id="resultSearch" ng-repeat="meteorites in mapC.meteorites | filter: searchString | limitTo:5" ng-show="searchbar.$valid">
 						<div id="suggestion" ng-click="zoomOnCoordinate(meteorites.geolocation.coordinates[1], meteorites.geolocation.coordinates[0], 8)" >
@@ -42,11 +42,11 @@
 				<div class="rightLabelYear"></div>
 			</div>
 			<div class="row options" id="row_option">
-				<input type="button" id="dropMeteorite" ng-click="startStopDropMeteorite()" value = "Drop meteorites"></input><br/>
+				<button id="reloadMarkers" ng-click="reloadMarkers()">Apply filter</button>	
 			</div>
 			<div class="row options" id="row_option">
 				<!-- drop meteorites button -->
-				<button id="reloadMarkers" ng-click="reloadMarkers()">Apply filter</button>
+				<input type="button" id="dropMeteorite" ng-click="startStopDropMeteorite()" value = "Drop meteorites"></input><br/>
 			</div>
 		</div>
 		<div class ="col-xs-12 col-lg-7">

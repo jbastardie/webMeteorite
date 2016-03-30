@@ -1,7 +1,17 @@
 angular.module('meteoriteControllers').controller('statController',function ($scope) {
 
   $scope.meteorites=dataJsonBis;
+  $scope.sortType     = 'name'; // set the default sort type
+  $scope.sortReverse  = false;
 
+  //Gestion de la pagination
+    $scope.viewby = 10;
+    $scope.setItemsPerPage = function(num) {
+    $scope.itemsPerPage = num;
+    $scope.currentPage = 1; //reset to first paghe
+  }
+   $scope.currentPage = 1,$scope.numPerPage = 10 ,$scope.maxSize = 5;
+// Fin pagination
 
 
 
@@ -109,6 +119,18 @@ angular.module('meteoriteControllers').controller('statController',function ($sc
   $scope.onClick = function (points, evt) {
     console.log(points, evt);
   };
+
+
+
+
+
+
+
+
+
+
+
+
 
   // console.log(counts);
 });
