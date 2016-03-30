@@ -23,3 +23,7 @@
 	}
 
 }
+@media (max-width:438px) {
+	table{font-size: 11px;}
+
+}

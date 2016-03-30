@@ -16,23 +16,23 @@
 		</div>
 		<div class="col-xs-12 chart">
 			<table class="table">
-					<tr>
-						<td ng-click="sortType = 'name'; sortReverse = !sortReverse">Nom</td>
+					<tr class="border-bottom">
+						<td ng-click="sortType = 'name'; sortReverse = !sortReverse" class="headerLeftTable">Nom</td>
 						<td ng-click="sortType = 'mass'; sortReverse = !sortReverse">Masse (g)</td>
 						<td ng-click="sortType = 'year'; sortReverse = !sortReverse">Année</td>
-						<td ng-click="sortType = 'recclass'; sortReverse = !sortReverse">Classe</td>
+						<td ng-click="sortType = 'recclass'; sortReverse = !sortReverse" class="headerRightTable">Classe</td>
 
 						</td>
 					</tr>
 					<tr ng-repeat="met in meteorites | orderBy:sortType:sortReverse | limitTo:viewby:(currentPage-1)*viewby">
-						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.name }}</td>
-						<td ng-if="$even"style="background-color:blue">{{ met.name }}</td>
-						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.mass }}</td>
-						<td ng-if="$even"style="background-color:blue">{{ met.mass }}</td>
-						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.year }}</td>
-						<td ng-if="$even"style="background-color:blue">{{ met.year }}</td>
-						<td ng-if="$odd" style="background-color:#f1f1f1">{{ met.recclass }}</td>
-						<td ng-if="$even"style="background-color:blue">{{ met.recclass }}</td>
+						<td ng-if="$odd" style="background-color:#cdf">{{ met.name }}</td>
+						<td ng-if="$even"style="background-color:#DCDCDC">{{ met.name }}</td>
+						<td ng-if="$odd" style="background-color:#cdf">{{ met.mass }}</td>
+						<td ng-if="$even"style="background-color:#DCDCDC">{{ met.mass }}</td>
+						<td ng-if="$odd" style="background-color:#cdf">{{ met.year }}</td>
+						<td ng-if="$even"style="background-color:#DCDCDC">{{ met.year }}</td>
+						<td ng-if="$odd" style="background-color:#cdf">{{ met.recclass }}</td>
+						<td ng-if="$even"style="background-color:#DCDCDC">{{ met.recclass }}</td>
 					</tr>
 		</table>
 		<div class="row">
