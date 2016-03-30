@@ -68,6 +68,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			return markerImage;
 		};
 		
+		//crée un marker avec son contenu
 		var createContentMarker = function(meteorite){
 			var latLng = new google.maps.LatLng(meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]);
 			var marker = new google.maps.Marker({
@@ -110,7 +111,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 				document.getElementById("dropMeteorite").value = "stop drop meteorites";
 			}
 		}
-		
+		//fonction appelé à intervalle régulier pour faire tomber les météorites sur la carte
 		function dropMeteorite(){
 			var meteorite = globalScope.meteorites[variableForIncrementMeteorite];
 			if (typeof(meteorite.geolocation) != "undefined"){
