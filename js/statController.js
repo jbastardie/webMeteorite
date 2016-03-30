@@ -1,6 +1,8 @@
 angular.module('meteoriteControllers').controller('statController',function ($scope) {
 
   $scope.meteorites=dataJsonBis;
+
+  //Gestion nombre items par page
   $scope.sortType     = 'name'; // set the default sort type
   $scope.sortReverse  = false;
 
@@ -14,15 +16,17 @@ angular.module('meteoriteControllers').controller('statController',function ($sc
 // Fin pagination
 
 
-
+// On ne traite les données qu'une fois lors de la navigation
   if (uninitializedChart) {
     var counts = {};
     var countsYear= {};
     var tabMass=[];
     var tabYear=[];
+    //initialisation des objets recevant les données traitées
     var tabData={dixG:0,centG:0,milleG:0,dixKG:0,centKG:0,mG:0,dixMG:0,centMG:0};
     var tabDataYear={a:0,b:0,c:0,d:0,e:0,f:0,g:0,h:0,i:0,j:0,k:0,l:0,m:0,n:0};
-      console.log("initialize chart");
+
+    //Formatage des données
     for (var variable in $scope.meteorites) {
       if ($scope.meteorites.hasOwnProperty(variable)) {;
         $scope.meteorites[variable].year=parseFloat($scope.meteorites[variable].year);
@@ -32,12 +36,14 @@ angular.module('meteoriteControllers').controller('statController',function ($sc
       }
     }
 
+    //on compte le nombre d'occurence de chaque valeurs
     for(var i = 0; i< $scope.meteorites.length; i++) {
         var num = $scope.meteorites[i].mass;
         counts[num] = counts[num] ? counts[num]+1 : 1;
         var numYear = $scope.meteorites[i].year;
         countsYear[numYear] = countsYear[numYear] ? countsYear[numYear]+1 : 1;
     }
+    //On regroupe les données par tranches de valeurs
     for(key in counts){
       if (key!="undefined") {
         if(parseFloat(key)<10){
@@ -59,6 +65,7 @@ angular.module('meteoriteControllers').controller('statController',function ($sc
         }
       }
     }
+
     for(key in countsYear){
       if (key!="undefined") {
         if(parseFloat(key)<1800){
@@ -92,6 +99,8 @@ angular.module('meteoriteControllers').controller('statController',function ($sc
         }
       }
     }
+
+    //Preparation des tableaux de données pour l'affichage
     tabMass.push(0);
     for (var key in tabData) {
       if (tabData.hasOwnProperty(key)) {
@@ -108,29 +117,16 @@ angular.module('meteoriteControllers').controller('statController',function ($sc
     chartData.tabMass=tabMass;
     chartData.tabYear=tabYear;
   }
+
+  //Mise en place des données
   $scope.labelsMass = ["0","10","100","1000","10K","100k","1M","10M","100M"];
   $scope.labelsYear = ["800","1800","1850","1900","1910","1920","1930","1940","1950","1960","1970","1980","1990","2000","2013"];
   $scope.seriesMass = ['Repartition selon la masse'];
   $scope.seriesYear = ["Repartition selon l'année"];
-  // $scope.data = [[tabData.dixG,tabData.dixG,tabData.centG,tabData.milleG,tabData.dixKG,tabData.centKG,tabData.mg,tabData.dixMG,tabData.centMG]];
   $scope.dataMass = [chartData.tabMass];
   $scope.dataYear = [chartData.tabYear];
 
   $scope.onClick = function (points, evt) {
     console.log(points, evt);
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // console.log(counts);
 });

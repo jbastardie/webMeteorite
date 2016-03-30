@@ -24,6 +24,7 @@
 
 						</td>
 					</tr>
+					<!-- Utilisation du ng-if pour gerer la couleur des lignes -->
 					<tr ng-repeat="met in meteorites | orderBy:sortType:sortReverse | limitTo:viewby:(currentPage-1)*viewby">
 						<td ng-if="$odd" style="background-color:#cdf">{{ met.name }}</td>
 						<td ng-if="$even"style="background-color:#DCDCDC">{{ met.name }}</td>
@@ -36,6 +37,7 @@
 					</tr>
 		</table>
 		<div class="row">
+			<!-- Pagination  -->
 		<pagination ng-model="currentPage" total-items="meteorites.length" max-size="maxSize" boundary-links="true"></pagination>
 		<select class="form-control" ng-model="viewby" ng-change="setItemsPerPage(viewby)"></option><option ng-selected="true">10</option><option>20</option><option>30</option><option>40</option><option>50</option></select>
 	</div>

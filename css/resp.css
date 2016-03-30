@@ -16,14 +16,14 @@
 		height:480px;
 	}
 }
-@media (max-width:417px) {
-	.form-control{
-		position: relative;
-    top: -54px;
-	}
 
 }
 @media (max-width:438px) {
 	table{font-size: 11px;}
+}
+@media (max-width: 1200px) {
+	#map{
+		margin-top: 10px;
+	}
 
 }

@@ -1,8 +1,8 @@
 angular.module('meteoriteControllers').controller('mapController',['$http','$q','$window','$scope',
 	function($http,$q,$window,$scope){
-		
+
 		// Decalaration des variables
-		//Scope 
+		//Scope
 		var globalScope=this;
 		globalScope.meteorites=[];
 		//object map
@@ -18,9 +18,9 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 		//variable d'incrémentation pour la répétition de l'éxecution de la fonction dropMeteorite
 		var variableForIncrementMeteorite = 0;
 
-		
+
 		// Declaration des Fonctions
-		
+
 		//initialisationde la carte
 		var initMap=function() {
 			console.log('launch init map');
@@ -36,7 +36,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			});
 			placeMarkers();
 		};
-		
+
 		var placeMarkers = function(massMin,massMax,yearMin,yearMax){
 			console.log('lauch place markers');
 			//creation de notre tableau de marker
@@ -44,11 +44,11 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			//parcours des données extraites du json
 			for (var i = 0; i < globalScope.meteorites.length; i++) {
 			  var meteorite = globalScope.meteorites[i];
-			  //extraction de la masse et de l'année de la météorite pour comparaison avec les filtres 
+			  //extraction de la masse et de l'année de la météorite pour comparaison avec les filtres
 			  var massMeteorite = meteorite.mass;
 			  var yearMeteorite = new Date(meteorite.year).getFullYear();
 			  //condition vérifiant si la métorite possède bien une géolocalisation, et si elle est conforme aux filtres d'affichages défini par l'utilisateur.
-			  if((typeof(meteorite.geolocation) != "undefined") && massMeteorite >= massMin && massMeteorite <= massMax && 
+			  if((typeof(meteorite.geolocation) != "undefined") && massMeteorite >= massMin && massMeteorite <= massMax &&
 			  yearMeteorite >= yearMin && yearMeteorite <= yearMax || ((typeof(meteorite.geolocation) != "undefined") && typeof(massMin)=="undefined")){
 					//creation des markers et ajout dans le tableau de marker
 					markers.push(createContentMarker(meteorite));
@@ -56,7 +56,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			}
 			markerClusterer = new MarkerClusterer(map, markers);
 		};
-		
+
 		var markerImage = function(){
 			var markerImage = new google.maps.MarkerImage(
 				'images/meteorite.png',
@@ -67,7 +67,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			);
 			return markerImage;
 		};
-		
+
 		//crée un marker avec son contenu
 		var createContentMarker = function(meteorite){
 			var latLng = new google.maps.LatLng(meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]);
@@ -77,22 +77,22 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			});
 			var content = "masse: "+ meteorite.mass+" g & nom: " + meteorite.name;
 			var infowindow = new google.maps.InfoWindow();
-			google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+			google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
 				return function() {
 					infowindow.setContent(content);
 					infowindow.open(map,marker);
 				};
-			})(marker,content,infowindow)); 
+			})(marker,content,infowindow));
 			return marker;
 		}
-		
+
 		//fonction permettant de recharger les markers ansi que le markerclusterer en fonction des données des sliders
 		$scope.reloadMarkers = function(){
 			markerClusterer.clearMarkers();
 			placeMarkers($('#massSlider').nstSlider('get_current_min_value'),$('#massSlider').nstSlider('get_current_max_value'),
 			$('#yearSlider').nstSlider('get_current_min_value'),$('#yearSlider').nstSlider('get_current_max_value'));
 		}
-		
+
 		//fonction gerant la chute des météorites
 		$scope.startStopDropMeteorite = function(){
 			if(isDropping){
@@ -102,13 +102,13 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 				  }
 				placeMarkers();
 				isDropping = false;
-				document.getElementById("dropMeteorite").value = "drop météorites";
+				document.getElementById("dropMeteorite").value = "Meteorites rain";
 			}
 			else{
 				markerClusterer.clearMarkers();
 				intervalForDropMeteorite = setInterval(function(){ dropMeteorite() }, 200);
 				isDropping = true;
-				document.getElementById("dropMeteorite").value = "stop drop meteorites";
+				document.getElementById("dropMeteorite").value = "Stop meteorites rain";
 			}
 		}
 		//fonction appelé à intervalle régulier pour faire tomber les météorites sur la carte
@@ -127,7 +127,7 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 				}
 			}
 		}
-		
+
 		//zoom sur les coordonnées transmise en argumant pour un zoom donné.
 		$scope.zoomOnCoordinate = function(lat, lng, zoom) {
 			if (typeof(lat) && typeof(lng) != "undefined"){
@@ -139,16 +139,16 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 				alert("Les coordonnées pour cette météorite ne sont pas renseignées");
 			 }
 		};
-		
+
 		// Logique du MapController
 		// Chargement de l'API GoogleMap si elle n'as pas encore été chargée
 		// Sinon juste initialisation de la carte
 		if(typeof google!='undefined'){
 			initMap();
-			
+
 		}else{
 			// Load Google map API script
-			function loadScript() {  
+			function loadScript() {
 				// Use global document since Angular's $document is weak
 				var script = document.createElement('script');
 				//L'url contient un callback sur initMap
@@ -160,8 +160,8 @@ angular.module('meteoriteControllers').controller('mapController',['$http','$q',
 			// Association de l'InitMap du Js et du HTML
 			$window.initMap = function () {
 				initMap();
-			}			
-			
+			}
+
 			loadScript();
 
 		}
